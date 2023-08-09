@@ -2,24 +2,15 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-<!--	<modules>-->
-<!--		<module>light-core</module>-->
-<!--		<module>light-web</module>-->
-<!--	</modules>-->
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.1.0-SNAPSHOT</version>
-		<relativePath/>
-		<!-- lookup parent from repository -->
-	</parent>
-	<groupId>com.github.smallshine</groupId>
-	<artifactId>light</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>light</name>
-	<description>Demo project for Spring Boot</description>
+	<modules>
+		<module>light-core</module>
+		<module>light-web</module>
+	</modules>
 	<properties>
+		<spring-boot.version>3.1.0-SNAPSHOT</spring-boot.version>
 		<java.version>17</java.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<mysql.version>8.0.33</mysql.version>
 		<druid.version>1.2.17</druid.version>
 		<druid-spring-boot-starter>
@@ -28,7 +19,20 @@
 		<gson.version>
 			2.10.1
 		</gson.version>
+		<light-app.version>1.0.0-SNAPSHOT</light-app.version>
 	</properties>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.1.0-SNAPSHOT</version>
+		<relativePath/>
+	</parent>
+	<groupId>com.github.smallshine</groupId>
+	<artifactId>light</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>light</name>
+	<description>Light project from Spring Boot</description>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -149,30 +153,47 @@
 		</dependency>
 
 	</dependencies>
-
-	<build>
-		<plugins>
-			<plugin>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
 				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
-		<resources>
-			<resource>
-				<directory>src/main/resources</directory>
-				<includes>
-					<include>**/*.yml</include>
-				</includes>
-			</resource>
-			<resource>
-				<directory>src/main/resources</directory>
-				<includes>
-					<include>**/*</include>
-				</includes>
-			</resource>
-		</resources>
+				<artifactId>spring-boot-dependencies</artifactId>
+				<version>${spring-boot.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.github.smallshine</groupId>
+				<artifactId>light-core</artifactId>
+				<version>${light-app.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.github.smallshine</groupId>
+				<artifactId>light-web</artifactId>
+				<version>${light-app.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	<profiles>
+		<profile>
+			<id>develop</id>
+			<activation>
+				<os>
+					<family>Mac</family>
+				</os>
+			</activation>
+			<properties>
+				<db1.url>127.0.0.1</db1.url>
+			</properties>
+		</profile>
+		<profile>
+			<id>production</id>
+			<properties>
+				<db1.url>10.62.252.166</db1.url>
+			</properties>
+		</profile>
+	</profiles>
 
-	</build>
 	<repositories>
 		<repository>
 			<id>spring-milestones</id>
