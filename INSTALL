@@ -1,0 +1,27 @@
+## 结构
+### light 父模块
+### light-core 核心子模块，负责业务逻辑与数据库相关
+### light-web 展现子模块，负责接口相关
+
+## 执行
+```shell
+jarry@jarrys-MacBook-Pro target % ls
+classes
+generated-sources
+generated-test-sources
+light-web-1.0.0-SNAPSHOT.jar
+light-web-1.0.0-SNAPSHOT.jar.original
+maven-archiver
+maven-status
+surefire-reports
+test-classes
+jarry@jarrys-MacBook-Pro target % java -jar light-web-1.0.0-SNAPSHOT.jar
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::       (v3.1.0-SNAPSHOT)
+```
