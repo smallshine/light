@@ -1,0 +1,8 @@
+com/github/smallshine/light/user/service/impl/UserServiceImpl.class
+com/github/smallshine/light/user/service/UserService.class
+com/github/smallshine/light/user/domain/repository/impl/UserRepositoryImpl.class
+com/github/smallshine/light/user/domain/repository/UserRepository.class
+com/github/smallshine/light/base/repository/Page.class
+com/github/smallshine/light/base/repository/QueryParameter.class
+com/github/smallshine/light/user/domain/model/User.class
+com/github/smallshine/light/base/repository/DataSourceConfig.class
